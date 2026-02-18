@@ -1,2 +1,2 @@
-This is my first Git practice file.
+echoThis is my first Git practice file.
 This is my ammendment in first Git practice file.
