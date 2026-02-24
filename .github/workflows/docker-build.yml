@@ -1,0 +1,36 @@
+name: CI Pipeline - Docker Build (Day 4)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Start message
+      - name: Start Message
+        run: echo -e "\033[1;36m=== Starting Docker Build ===\033[0m"
+
+      # Step 3: Build Docker image
+      - name: Build Docker Image
+        run: |
+          echo -e "\033[1;33mBuilding Docker image...\033[0m"
+          docker build -t myapp:latest .
+
+      # Step 4: List Docker images
+      - name: List Docker Images
+        run: |
+          echo -e "\033[34mListing Docker images...\033[0m"
+          docker images
+
+      # Step 5: Finish message
+      - name: Finish
+        run: echo -e "\033[1;32m=== Docker Build Completed Successfully ===\033[0m"
