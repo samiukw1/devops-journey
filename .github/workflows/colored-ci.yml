@@ -1,0 +1,48 @@
+name: CI Pipeline - Colored & Styled
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Welcome message (bold + cyan)
+      - name: Welcome Message
+        run: echo -e "\033[1;36m=== CI Pipeline Started ===\033[0m"
+
+      # Step 3: Grouped logs + blue text
+      - name: List project files
+        run: |
+          echo "::group::Listing Files"
+          echo -e "\033[34mProject files in the repository:\033[0m"
+          ls -la
+          echo "::endgroup::"
+
+      # Step 4: Build step (bold yellow)
+      - name: Build Step
+        run: echo -e "\033[1;33mBuilding the project...\033[0m"
+
+      # Step 5: Test step (bold green)
+      - name: Run Tests
+        run: echo -e "\033[1;32mRunning tests... All tests passed!\033[0m"
+
+      # Step 6: Warning example (yellow)
+      - name: Warning Example
+        run: echo -e "\033[33m[Warning] This is just a simulated warning.\033[0m"
+
+      # Step 7: Error example (red)
+      - name: Error Example
+        run: echo -e "\033[31m[Error] This is a simulated error message (not a real failure).\033[0m"
+
+      # Step 8: Final message (bold magenta)
+      - name: Finish
+        run: echo -e "\033[1;35m=== CI Pipeline Completed Successfully ===\033[0m"
